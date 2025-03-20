@@ -5,12 +5,18 @@ function App() {
   const [style, setStyle] = useState(false);
   const [loginOrRegister, setLoginOrRegister] = useState(true);
   const firstRender = useRef(true);
+  const inp1 = useRef();
+  const inp2 = useRef();
+  const inp3 = useRef();
   useEffect(() => {
     if (firstRender.current == true) {
       firstRender.current = false;
       return;
     }
     setLoginOrRegister((prev) => !prev);
+    inp1.current.value = "";
+    inp2.current.value = "";
+    inp3.current.value = "";
   }, [style]);
   useEffect(() => {
     // console.log(loginOrRegister);
@@ -20,7 +26,7 @@ function App() {
     <div>
       <div className="container">
         <div className={`${!style ? "form" : "form transformation-form "}`}>
-          <h1 className="title">Sign in</h1>
+          <h1 className="title"> {!style ? "Sign in" : " Sign up"}</h1>
           <div className="icons">
             <span>
               <i className="fa-brands fa-facebook" />
@@ -38,17 +44,17 @@ function App() {
           <p>or use your Email and password</p>
           <form>
             <div className={`in-name ${!style ? "hidden" : ""} `}>
-              <input type="text" />
+              <input ref={inp1} type="text" placeholder="Name" />
             </div>
             <div>
-              <input type="text" />
+              <input ref={inp2} type="text" placeholder="Email" />
             </div>
             <div>
-              <input type="password" />
+              <input ref={inp3} type="password" placeholder="Password" />
             </div>
             <p>Forget Your Password?</p>
             <button type="submit" className="title">
-              Sign in
+              {!style ? "Sign in" : " Sign up"}
             </button>
           </form>
         </div>
@@ -61,7 +67,7 @@ function App() {
             }}
             className="next"
           >
-            Sign up
+            {!style ? "Sign up" : " Sign in"}
           </button>
         </div>
       </div>

@@ -99,6 +99,22 @@ body {
   cursor: pointer;
   background-color: rgb(105, 24, 181);
   font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+.container .form form button::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background-color: #fff;
+  top: 0;
+  left: -10px;
+  transform: rotate(10deg);
+  transition: all 0.2s;
+}
+.container .form form button:hover::after {
+  left: 105%;
 }
 
 .left {
